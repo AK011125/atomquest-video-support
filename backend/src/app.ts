@@ -1,7 +1,7 @@
 import cors from "cors";
 import express from "express";
-import rateLimit from "express-rate-limit";
 import helmet from "helmet";
+import { rateLimit } from "express-rate-limit";
 import path from "node:path";
 import { env } from "./config/env.js";
 import { errorHandler, notFound } from "./middleware/errorHandler.js";
@@ -11,7 +11,7 @@ export function createApp() {
   const app = express();
   app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
   app.use(cors({ origin: env.CLIENT_URL, credentials: true }));
-  app.use(rateLimit({ windowMs: 60_000, limit: 300 }));
+  app.use(rateLimit({ windowMs: 60000, limit: 300 }));
   app.use(express.json({ limit: "1mb" }));
   app.use("/uploads", express.static(path.resolve(env.UPLOAD_DIR)));
   app.use("/api", apiRoutes);
