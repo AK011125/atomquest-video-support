@@ -1,0 +1,9 @@
+node_modules
+.next
+dist
+.env
+uploads/*
+recordings/*
+!.gitkeep
+Dockerfile.dev
+npm-debug.log*
